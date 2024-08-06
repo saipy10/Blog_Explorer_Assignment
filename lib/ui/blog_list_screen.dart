@@ -5,11 +5,13 @@ import '../blocs/blog_state.dart';
 import '../models/blog.dart';
 
 class BlogListScreen extends StatelessWidget {
+  const BlogListScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Row(
+        title: const Row(
           children: [
             Image(
               image: AssetImage("assets/images/logo.png"),
@@ -26,7 +28,7 @@ class BlogListScreen extends StatelessWidget {
           ],
         ),
         backgroundColor: Colors.black87,
-        actions: [
+        actions: const [
           Row(
             children: [
               Text(
@@ -37,7 +39,7 @@ class BlogListScreen extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: EdgeInsets.all(8.0),
                 child: CircleAvatar(
                   backgroundColor: Colors.white,
                   child: Icon(
@@ -50,7 +52,7 @@ class BlogListScreen extends StatelessWidget {
         ],
       ),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/images/bg.jpeg"),
             fit: BoxFit.cover,
@@ -59,7 +61,7 @@ class BlogListScreen extends StatelessWidget {
         child: BlocBuilder<BlogBloc, BlogState>(
           builder: (context, state) {
             if (state is BlogLoading) {
-              return Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             } else if (state is BlogLoaded) {
               return Center(
                 child: SizedBox(
@@ -74,7 +76,7 @@ class BlogListScreen extends StatelessWidget {
                           height: 300,
                           width: 150,
                           child: Card(
-                            shape: RoundedRectangleBorder(
+                            shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.only(
                                 topRight: Radius.circular(16.0),
                                 bottomLeft: Radius.circular(16.0),
@@ -85,7 +87,7 @@ class BlogListScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 ClipRRect(
-                                  borderRadius: BorderRadius.only(
+                                  borderRadius: const BorderRadius.only(
                                     topRight: Radius.circular(16.0),
                                   ),
                                   child: Image.network(
@@ -101,7 +103,7 @@ class BlogListScreen extends StatelessWidget {
                                     blog.title.length > 50
                                         ? "${blog.title.substring(0, 50)}..."
                                         : blog.title,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 18,
                                       color: Colors.white,
@@ -120,7 +122,7 @@ class BlogListScreen extends StatelessWidget {
             } else if (state is BlogError) {
               return Center(child: Text('Error: ${state.message}'));
             }
-            return Center(child: Text('No blogs available.'));
+            return const Center(child: Text('No blogs available.'));
           },
         ),
       ),

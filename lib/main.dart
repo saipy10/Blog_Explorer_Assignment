@@ -6,10 +6,12 @@ import 'ui/blog_list_screen.dart';
 import 'blocs/blog_event.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,7 +19,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: BlocProvider(
         create: (context) => BlogBloc(ApiService())..add(FetchBlogs()),
-        child: BlogListScreen(),
+        child: const BlogListScreen(),
       ),
     );
   }
